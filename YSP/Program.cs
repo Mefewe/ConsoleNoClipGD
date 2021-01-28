@@ -23,6 +23,8 @@ namespace YSP
         private static string ProcName = "";
         static void Main(string[] args)
         {
+            Console.WriteLine("Введите имя процесса без .exe: ");
+            ProcName = Console.ReadLine();
             for (; ; )
             {
                 Program.proc = Process.GetProcessesByName(ProcName).FirstOrDefault<Process>();
