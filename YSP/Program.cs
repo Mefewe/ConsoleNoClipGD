@@ -14,21 +14,22 @@ namespace YSP
 {
     class Program
     {
-        static Process proc;
-        static IntPtr startOffset;
-        static IntPtr hProc;
+        
         static readonly byte[] Noclip_on = { 233, 121, 6, 0, 0 };
         static readonly byte[] Noclip_off = { 106, 20, 139, 203, 255 };
         static int wtf;
         static void Main(string[] args)
         {
+             Process proc;
+             IntPtr startOffset;
+             IntPtr hProc;
             Console.WriteLine("Введите имя процесса без .exe: ");
-            string ProcName = = Console.ReadLine();
+            string ProcName  = Console.ReadLine();
             for (; ; )
             {
-                Program.proc = Process.GetProcessesByName(ProcName).FirstOrDefault<Process>();
-                Program.startOffset = Program.proc.MainModule.BaseAddress;
-                Program.hProc = Program.OpenProcess(Program.ProcessAccessFlags.All, false, Program.proc.Id);
+                proc = Process.GetProcessesByName(ProcName).FirstOrDefault<Process>();
+                startOffset = proc.MainModule.BaseAddress;
+                hProc = Program.OpenProcess(Program.ProcessAccessFlags.All, false, proc.Id);
                 WriteProcessMemory(hProc, startOffset + 0x20A23C, Noclip_on, (uint)Noclip_on.Length, out wtf);
             }
         }
