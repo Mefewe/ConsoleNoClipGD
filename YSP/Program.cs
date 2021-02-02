@@ -14,17 +14,16 @@ namespace YSP
 {
     class Program
     {
-        public static Process proc;
-        public static IntPtr startOffset;
-        public static IntPtr hProc;
-        public static byte[] Noclip_on = { 233, 121, 6, 0, 0 };
-        public static byte[] Noclip_off = { 106, 20, 139, 203, 255 };
-        public static int wtf = 0;
-        private static string ProcName = "";
+        static Process proc;
+        static IntPtr startOffset;
+        static IntPtr hProc;
+        static readonly byte[] Noclip_on = { 233, 121, 6, 0, 0 };
+        static readonly byte[] Noclip_off = { 106, 20, 139, 203, 255 };
+        static int wtf;
         static void Main(string[] args)
         {
             Console.WriteLine("Введите имя процесса без .exe: ");
-            ProcName = Console.ReadLine();
+            string ProcName = = Console.ReadLine();
             for (; ; )
             {
                 Program.proc = Process.GetProcessesByName(ProcName).FirstOrDefault<Process>();
